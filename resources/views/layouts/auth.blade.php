@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title')</title>
-    <!-- Tell the browser to be responsive to screen width -->
+    <!-- Responder al ancho de banda del navegador -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Ionicons -->
+    <!-- iconos -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div class="login-logo">
             <a href="../../index2.html">{{ config('app.name') }}</a>
         </div>
-        <!-- /.login-logo -->
+        <!-- /.inicio-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 @yield('content')
@@ -28,7 +28,7 @@
             <!-- /.login-card-body -->
         </div>
     </div>
-    <!-- /.login-box -->
+    <!-- /.caja login -->
 
     <!-- jQuery -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -38,3 +38,4 @@
 </body>
 
 </html>
+
