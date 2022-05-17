@@ -1,20 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Añadir nuevo producto')
-@section('content-header', 'Añadir nuevo producto')
+@section('title', 'Editar Producto')
+@section('content-header', 'Editar producto')
 
 @section('content')
 
 <div class="card">
     <div class="card-body">
 
-        <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
-                    placeholder="Nombre" value="{{ old('name') }}">
+                    placeholder="Nombre" value="{{ old('name', $product->name) }}">
                 @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -26,7 +27,8 @@
             <div class="form-group">
                 <label for="description">Descripcion</label>
                 <textarea name="description" class="form-control @error('description') is-invalid @enderror"
-                    id="description" placeholder="Descripcion">{{ old('description') }}</textarea>
+                    id="description"
+                    placeholder="descripcion">{{ old('description', $product->description) }}</textarea>
                 @error('description')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -38,7 +40,7 @@
                 <label for="image">Imagen</label>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="image" id="image">
-                    <label class="custom-file-label" for="image">Subir archivo</label>
+                    <label class="custom-file-label" for="image">Choose file</label>
                 </div>
                 @error('image')
                 <span class="invalid-feedback" role="alert">
@@ -50,7 +52,7 @@
             <div class="form-group">
                 <label for="barcode">Codigo de barras</label>
                 <input type="text" name="barcode" class="form-control @error('barcode') is-invalid @enderror"
-                    id="barcode" placeholder="codigo de barras" value="{{ old('barcode') }}">
+                    id="barcode" placeholder="Codigo de barras" value="{{ old('barcode', $product->barcode) }}">
                 @error('barcode')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -61,7 +63,7 @@
             <div class="form-group">
                 <label for="price">Precio</label>
                 <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price"
-                    placeholder="Precio" value="{{ old('price') }}">
+                    placeholder="Precio" value="{{ old('price', $product->price) }}">
                 @error('price')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -72,8 +74,8 @@
             <div class="form-group">
                 <label for="status">Estado</label>
                 <select name="status" class="form-control @error('status') is-invalid @enderror" id="status">
-                    <option value="1" {{ old('status') === 1 ? 'selected' : ''}}>Activo</option>
-                    <option value="0" {{ old('status') === 0 ? 'selected' : ''}}>Inactivo</option>
+                    <option value="1" {{ old('status', $product->status) === 1 ? 'selected' : ''}}>Activo</option>
+                    <option value="0" {{ old('status', $product->status) === 0 ? 'selected' : ''}}>Inactivo</option>
                 </select>
                 @error('status')
                 <span class="invalid-feedback" role="alert">
@@ -82,7 +84,7 @@
                 @enderror
             </div>
 
-            <button class="btn btn-primary" type="submit">Añadir</button>
+            <button class="btn btn-primary" type="submit">Guardar</button>
         </form>
     </div>
 </div>
@@ -95,4 +97,4 @@
         bsCustomFileInput.init();
     });
 </script>
-@endsection 
+@endsection

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Product List')
-@section('content-header', 'Product List')
+@section('title', 'Productos')
+@section('content-header', 'Productos')
 @section('content')
 <a href="{{route('products.create')}}" class="btn btn-primary">Nuevo producto</a>
 <div class="card">
@@ -14,6 +14,7 @@
                     <th>Imagen</th>
                     <th>Codigo de barras</th>
                     <th>Precio</th>
+                    <th>Status</th>
                     <th>Creado</th>
                     <th>Actualizado</th>
                     <th>Acciones</th>
@@ -27,6 +28,10 @@
                     <td><img src="{{ Storage::url($product->image) }}" alt="" width="100px"></td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->price}}</td>
+                    <td>
+                        <span
+                            class="right badge badge-{{ $product->status ? 'success' : 'danger' }}">{{$product->status ? 'Active' : 'Inactive'}}</span>
+                    </td>
                     <td>{{$product->created_at}}</td>
                     <td>{{$product->updated_at}}</td>
                     <td>
