@@ -34,17 +34,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link" onclick="document.getElementById('logout-form').submit()">
-            <i class="nav-icon fa-solid fa-arrow-right-from-bracket"></i>
-              <p>
-                Logout
-              </p>
-              <form action="{{ route('logout')}}" method="POST" id="logout-form">
-                @csrf 
-              </form>
-            </a>
-          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
