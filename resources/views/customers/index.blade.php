@@ -1,52 +1,50 @@
 @extends('layouts.admin')
 
-@section('title', 'Productos')
-@section('content-header', 'Productos')
+@section('title', 'Lista de clientes')
+@section('content-header', 'Lista de clientes')
 @section('content')
-<a href="{{route('products.create')}}" class="btn btn-primary">Nuevo producto</a>
+<a href="{{route('customers.create')}}" class="btn btn-primary">Nuevo cliente</a>
 <div class="card">
     <div class="card-body">
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Codigo de barras</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th>Avatar</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
                     <th>Status</th>
                     <th>Creado</th>
-                    <th>Actualizado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $product)
+                @foreach ($customers as $customers)
                 <tr>
-                    <td>{{$product->id}}</td>
-                    <td>{{$product->name}}</td>
-                    <td><img src="{{ Storage::url($product->image) }}" alt="" width="100px"></td>
-                    <td>{{$product->barcode}}</td>
-                    <td>{{$product->price}}</td>
-                    <td>{{$product->quantity}}</td>
+                    <td>{{$customer->id}}</td>
                     <td>
-                        <span
-                            class="right badge badge-{{ $product->status ? 'success' : 'danger' }}">{{$product->status ? 'Active' : 'Inactive'}}</span>
+                        <img width="50" src="{{$customer->getAvatarUrl()}}" alt="">
                     </td>
-                    <td>{{$product->created_at}}</td>
-                    <td>{{$product->updated_at}}</td>
+                    <td>{{$customer->first_name}}</td>
+                    <td>{{$customer->last_name}}</td>
+                    <td>{{$customer->email}}</td>
+                    <td>{{$customer->phone}}</td>
+                    <td>{{$customer->address}}</td>
+                    <td>{{$customer->create_at}}</td>
                     <td>
-                        <a href="{{ route('products.edit', $product) }}" class="btn btn-primary"><i
+                        <a href="{{ route('customers.edit', $customer) }}" class="btn btn-primary"><i
                                 class="fas fa-edit"></i></a>
-                        <button class="btn btn-danger btn-delete" data-url="{{route('products.destroy', $product)}}"><i
+                        <button class="btn btn-danger btn-delete" data-url="{{route('customers.destroy', $customer)}}"><i
                             class="fas fa-trash"></i></button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $products->render() }}
+        {{ $customers->render() }}
     </div>
 </div>
 @endsection
@@ -66,7 +64,7 @@
                 })
                 swalWithBootstrapButtons.fire({
                 title: 'Estas seguro?',
-                text: "Realmente quieres borrar este producto?",
+                text: "Realmente quieres borrar este cliente?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Si, borralo!',
